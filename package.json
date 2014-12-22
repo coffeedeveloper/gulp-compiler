@@ -1,0 +1,13 @@
+{
+  "name": "gulp-demo",
+  "version": "0.0.0",
+  "description": "gulp demo",
+  "dependencies": {
+    "gulp": "*",
+    "gulp-watch": "*",
+    "gulp-stylus": "*",
+    "gulp-concat": "*",
+    "gulp-sourcemaps": "*",
+    "nib": "*"
+  }
+}
