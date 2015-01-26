@@ -4,6 +4,7 @@ var config = {
     dist: './content/dist',
     import: 'import/*.styl'
   },
+  type: 'stylus',
   bundles: [
     {
       name: 'site.css',
