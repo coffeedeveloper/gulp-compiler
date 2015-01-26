@@ -11,6 +11,7 @@
     "gulp-stylus": "*",
     "gulp-uglify": "*",
     "gulp-watch": "*",
-    "nib": "*"
+    "nib": "*",
+    "gulp-rename": "*"
   }
 }
