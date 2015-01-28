@@ -2,7 +2,8 @@ var config = {
   path: {
     source: './content/stylus',
     dist: './content/dist',
-    import: 'import/*.styl'
+    import: 'import/*.styl',
+    watch: './content/stylus/*.styl'
   },
   type: 'stylus',
   bundles: [

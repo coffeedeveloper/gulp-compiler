@@ -5,14 +5,15 @@
   "dependencies": {
     "gulp": "*",
     "gulp-autoprefixer": "*",
+    "gulp-clean": "*",
     "gulp-concat": "*",
     "gulp-minify-css": "*",
+    "gulp-rename": "*",
     "gulp-sourcemaps": "*",
     "gulp-stylus": "*",
     "gulp-uglify": "*",
     "gulp-watch": "*",
-    "gulp-rename": "*",
-    "gulp-clean": "*",
-    "nib": "*"
+    "nib": "*",
+    "run-sequence": "^1.0.2"
   }
 }
