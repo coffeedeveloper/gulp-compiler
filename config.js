@@ -1,11 +1,11 @@
 var config = {
+  preprocessor: 'stylus',
   path: {
     source: './content/stylus',
     dist: './content/dist',
     import: 'import/*.styl',
     watch: './content/stylus/*.styl'
   },
-  type: 'stylus',
   bundles: [
     {
       name: 'site.css',
@@ -14,6 +14,12 @@ var config = {
     {
       name: 'app.css',
       files: ['base.styl', 'app.styl']
+    },
+    {
+      name: 'test.css',
+      source: '../',
+      import: false,
+      files: ['test.styl']
     }
   ]
 }

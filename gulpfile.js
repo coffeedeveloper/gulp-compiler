@@ -8,38 +8,47 @@ var autoprefixer = require('gulp-autoprefixer')
 var concat       = require('gulp-concat')
 var rename       = require('gulp-rename')
 var clean        = require('gulp-clean')
+var less         = require('gulp-less')
 var path         = require('path')
-var runSequence  = require('run-sequence').use(gulp)
 
-var config      = require('./config')
-var sourceFiles = path.join(config.path.source, '*.styl')
-var bundles     = config.bundles
+//var runSequence  = require('run-sequence').use(gulp)
+
+var config  = require('./config')
+var bundles = config.bundles
 
 gulp.task('compile', function() {
   bundles.forEach(function(bundle) {
     var files = []
     bundle.files.forEach(function(f, i, arr) {
-      files.push(path.join(config.path.source, f))
+      files.push(path.join(bundle.source || config.path.source, f))
     })
 
+    var stylusConfig = {
+      sourcemap: {
+        inline: true,
+        sourceRoot: '.',
+        basePath: config.path.dist
+      }
+    }
+
+    var sourcemapsInitConfig = {
+      loadMaps: true
+    }
+
+    var sourcemapsWriteConfig = {
+      includeContent: true,
+      sourceRoot: '.'
+    }
+
+    if (bundle.import !== false)
+      stylusConfig.import = bundle.import || config.path.import
+
     gulp.src(files)
-        .pipe(stylus({
-          import: config.path.import,
-          sourcemap: {
-            inline: true,
-            sourceRoot: '.',
-            basePath: config.path.dist
-          }
-        }))
-        .pipe(sourcemaps.init({
-          loadMaps: true
-        }))
+        .pipe(stylus(stylusConfig))
+        .pipe(sourcemaps.init(sourcemapsInitConfig))
         .pipe(autoprefixer())
         .pipe(concat(bundle.name))
-        .pipe(sourcemaps.write('.', {
-          includeContent: true,
-          sourceRoot: '.'
-        }))
+        .pipe(sourcemaps.write('.', sourcemapsWriteConfig))
         .pipe(gulp.dest(config.path.dist))
   })
 })
