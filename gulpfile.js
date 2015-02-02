@@ -74,8 +74,11 @@ gulp.task('clean', function() {
       .pipe(clean())
 })
 
-gulp.watch(config.path.watch, ['compile'])
+gulp.task('watch', function() {
+  gulp.watch(config.path.watch, ['compile'])
+})
 
-gulp.task('default', ['clean', 'compile'])
+
+gulp.task('default', ['clean', 'compile', 'watch'])
 
 gulp.task('publish', ['minify'])
