@@ -1,5 +1,7 @@
 var config = {
   preprocessor: 'stylus',
+  sourcemaps: false,
+  autoprefix: true,
   path: {
     source: './content/stylus',
     dist: './content/dist',
@@ -14,12 +16,6 @@ var config = {
     {
       name: 'app.css',
       files: ['base.styl', 'app.styl']
-    },
-    {
-      name: 'test.css',
-      source: '../',
-      import: false,
-      files: ['test.styl']
     }
   ]
 }

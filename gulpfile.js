@@ -23,33 +23,42 @@ gulp.task('compile', function() {
       files.push(path.join(bundle.source || config.path.source, f))
     })
 
-    var stylusConfig = {
-      sourcemap: {
-        inline: true,
-        sourceRoot: '.',
+    var stylusConfig = {}
+
+    if (config.sourcemaps) {
+      stylusConfig.sourcemap = {
+        inline: true, sourceRoot: '.',
         basePath: config.path.dist
       }
     }
 
-    var sourcemapsInitConfig = {
-      loadMaps: true
-    }
+    var sourcemapsInitConfig = { loadMaps: true }
 
     var sourcemapsWriteConfig = {
-      includeContent: true,
-      sourceRoot: '.'
+      includeContent: true, sourceRoot: '.'
     }
 
     if (bundle.import !== false)
       stylusConfig.import = bundle.import || config.path.import
 
-    gulp.src(files)
-        .pipe(stylus(stylusConfig))
-        .pipe(sourcemaps.init(sourcemapsInitConfig))
-        .pipe(autoprefixer())
-        .pipe(concat(bundle.name))
-        .pipe(sourcemaps.write('.', sourcemapsWriteConfig))
-        .pipe(gulp.dest(config.path.dist))
+    var g = gulp.src(files)
+
+    if (config.preprocessor == 'stylus')
+      g = g.pipe(stylus(stylusConfig))
+
+    if (config.sourcemaps)
+      g = g.pipe(sourcemaps.init(sourcemapsInitConfig))
+
+    if (config.autoprefix)
+      g = g.pipe(autoprefixer())
+
+    g = g.pipe(concat(bundle.name))
+
+    if (config.sourcemaps)
+      g = g.pipe(sourcemaps.write('.', sourcemapsWriteConfig))
+
+    g.pipe(gulp.dest(config.path.dist))
+
   })
 })
 
