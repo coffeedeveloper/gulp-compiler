@@ -70,7 +70,7 @@ gulp.task('minify', function() {
 })
 
 gulp.task('clean', function() {
-  gulp.src(config.path.dist)
+  gulp.src(path.join(config.path.dist, '*'))
       .pipe(clean())
 })
 
