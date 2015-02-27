@@ -1,7 +1,8 @@
 {
-  "name": "gulp-demo",
-  "version": "0.0.0",
-  "description": "gulp demo",
+  "name": "frontend-resource-generator",
+  "version": "0.1.0",
+  "description": "frontend resouce generator, stylus/less/sass file",
+  "main": "main.js",
   "dependencies": {
     "gulp": "*",
     "gulp-autoprefixer": "*",
@@ -14,6 +15,7 @@
     "gulp-uglify": "*",
     "gulp-watch": "*",
     "gulp-less": "*",
+    "gulp-chmod": "*",
     "nib": "*",
     "run-sequence": "^1.0.2"
   }

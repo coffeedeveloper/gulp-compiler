@@ -9,11 +9,12 @@ var concat       = require('gulp-concat')
 var rename       = require('gulp-rename')
 var clean        = require('gulp-clean')
 var less         = require('gulp-less')
+var chmod        = require('gulp-chmod')
 var path         = require('path')
 
 //var runSequence  = require('run-sequence').use(gulp)
 
-var config  = require('./config')
+var config  = require('./gulpconfig')
 var bundles = config.bundles
 
 gulp.task('compile', function() {
@@ -56,6 +57,9 @@ gulp.task('compile', function() {
 
     if (config.sourcemaps)
       g = g.pipe(sourcemaps.write('.', sourcemapsWriteConfig))
+
+    if (config.chmod)
+      g = g.pipe(chmod(config.chmod))
 
     g.pipe(gulp.dest(config.path.dist))
 

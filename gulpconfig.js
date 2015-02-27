@@ -2,6 +2,7 @@ var config = {
   preprocessor: 'stylus',
   sourcemaps: false,
   autoprefix: true,
+  chmod: 666,
   path: {
     source: './content/stylus',
     dist: './content/dist',
