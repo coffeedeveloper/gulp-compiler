@@ -14,7 +14,7 @@ var path         = require('path')
 
 //var runSequence  = require('run-sequence').use(gulp)
 
-var config  = require('./gulpconfig')
+var config  = require('./gulpconfig-less')
 var bundles = config.bundles
 
 gulp.task('compile', function() {
@@ -25,6 +25,8 @@ gulp.task('compile', function() {
     })
 
     var stylusConfig = {}
+
+    var lessConfig = {}
 
     if (config.sourcemaps) {
       stylusConfig.sourcemap = {
@@ -39,13 +41,23 @@ gulp.task('compile', function() {
       includeContent: true, sourceRoot: '.'
     }
 
-    if (bundle.import !== false)
+    if (bundle.import !== false) {
       stylusConfig.import = bundle.import || config.path.import
+      lessConfig.paths = [bundle.import || config.path.import]
+    }
 
     var g = gulp.src(files)
 
-    if (config.preprocessor == 'stylus')
-      g = g.pipe(stylus(stylusConfig))
+    console.log(lessConfig)
+
+    switch (config.preprocessor) {
+      case 'stylus':
+        g = g.pipe(stylus(stylusConfig))
+        break
+      case 'less':
+        g = g.pipe(less(lessConfig))
+        break
+    }
 
     if (config.sourcemaps)
       g = g.pipe(sourcemaps.init(sourcemapsInitConfig))
