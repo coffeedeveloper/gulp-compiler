@@ -1,6 +1,18 @@
 var config = {
   autoprefix: true,
   chmod: 666,
+  minify: [
+    {
+      type: 'css',
+      files: '*.css',
+      dist: './content/dist',
+    },
+    {
+      type: 'js',
+      files: '*.js',
+      dist: './content/dist',
+    }
+  ],
   tasks: [
     {
       preprocessor: 'stylus',

@@ -86,10 +86,21 @@ gulp.task('compile', function () {
 })
 
 gulp.task('minify', function() {
-  gulp.src(path.join(config.path.dist, '*.css'))
-      .pipe(minifyCSS())
-      .pipe(rename({suffix: '.min'}))
-      .pipe(gulp.dest(config.path.dist))
+  config.minify.forEach(function (task) {
+    var g = gulp.src(path.join(task.dist, task.files))
+
+    switch (task.type) {
+      case 'css':
+        g = g.pipe(minifyCSS())
+        break
+      case 'js':
+        g = g.pipe(uglify())
+        break;
+    }
+
+    g = g.pipe(rename({suffix: '.min'}))
+    g = g.pipe(gulp.dest(task.dist))
+  })
 })
 
 gulp.task('clean', function() {
