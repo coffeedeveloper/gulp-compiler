@@ -1,6 +1,11 @@
 var config = {
   autoprefix: true,
   chmod: 666,
+  images: {
+    level: 5,
+    source: './content/images/*',
+    dist: './content/dist'
+  },
   minify: [
     {
       type: 'css',

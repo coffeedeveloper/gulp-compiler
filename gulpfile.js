@@ -11,6 +11,8 @@ var clean        = require('gulp-clean')
 var less         = require('gulp-less')
 var chmod        = require('gulp-chmod')
 var react        = require('gulp-react')
+var imagemin     = require('gulp-imagemin')
+var del          = require('del')
 var path         = require('path')
 
 //var runSequence  = require('run-sequence').use(gulp)
@@ -103,11 +105,15 @@ gulp.task('minify', function() {
   })
 })
 
-gulp.task('clean', function() {
+gulp.task('clean', function (callback) {
+  var arr = []
   tasks.forEach(function (task) {
-    gulp.src(path.join(task.path.dist, '*'))
-        .pipe(clean())
+    if (task.path && task.path.dist
+        && arr.indexOf(task.path.dist) == -1) {
+      arr.push(task.path.dist)
+    }
   })
+  del(arr, callback)
 })
 
 gulp.task('watch', function() {
@@ -116,6 +122,11 @@ gulp.task('watch', function() {
   })
 })
 
+gulp.task('images', function () {
+  gulp.src(config.images.source)
+      .pipe(imagemin({optimizationLevel: config.images.level}))
+      .pipe(gulp.dest(config.images.dist))
+})
 
 gulp.task('default', ['clean', 'compile', 'watch'])
 
