@@ -1,5 +1,5 @@
 {
-  "name": "frontend-resource-generator",
+  "name": "gulp-compiler",
   "version": "0.1.0",
   "description": "frontend resouce generator, stylus/less/sass file",
   "main": "main.js",
@@ -19,7 +19,6 @@
     "gulp-chmod": "*",
     "gulp-imagemin": "*",
     "del": "*",
-    "nib": "*",
-    "run-sequence": "^1.0.2"
+    "nib": "*"
   }
 }

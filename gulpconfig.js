@@ -36,6 +36,22 @@ var config = {
       ]
     },
     {
+      preprocessor: 'stylus',
+      sourcemaps: false,
+      path: {
+        source: './content/another',
+        dist: './content/dist',
+        import: false,
+        watch: './content/another/*.styl'
+      },
+      bundles: [
+        {
+          name: 'xxoo.css',
+          files: ['xxoo.styl']
+        }
+      ]
+    },
+    {
       preprocessor: 'less',
       sourcemaps: false,
       path: {
@@ -68,6 +84,6 @@ var config = {
       ]
     }
   ]
-}
+};
 
-module.exports = config
+module.exports = config;
