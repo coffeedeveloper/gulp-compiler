@@ -1,18 +1,28 @@
 var gulp         = require('gulp');
-var stylus       = require('gulp-stylus');
+
+var path         = require('path');
+var assign       = require('object-assign');
+var chmod        = require('gulp-chmod');
+
+//server
 var watch        = require('gulp-watch');
-var uglify       = require('gulp-uglify');
+var nodemon      = require('gulp-nodemon');
+
+//css
+var stylus       = require('gulp-stylus');
+var less         = require('gulp-less');
 var minifyCSS    = require('gulp-minify-css');
+
+var uglify       = require('gulp-uglify');
 var sourcemaps   = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var concat       = require('gulp-concat');
 var rename       = require('gulp-rename');
-var less         = require('gulp-less');
-var chmod        = require('gulp-chmod');
 var react        = require('gulp-react');
 var imagemin     = require('gulp-imagemin');
 var del          = require('del');
-var path         = require('path');
+
+
 //var clean        = require('gulp-clean')
 
 var config = require('./gulpconfig');
@@ -124,6 +134,10 @@ gulp.task('images', function () {
   gulp.src(config.images.source)
       .pipe(imagemin({optimizationLevel: config.images.level}))
       .pipe(gulp.dest(config.images.dist));
+});
+
+gulp.task('server', function () {
+  nodemon(config.server.nodemon);
 });
 
 gulp.task('default', ['clean', 'compile', 'watch']);

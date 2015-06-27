@@ -4,21 +4,23 @@
   "description": "frontend resouce generator, stylus/less/sass file",
   "main": "main.js",
   "dependencies": {
+    "del": "*",
     "gulp": "*",
-    "gulp-react": "*",
-    "gulp-stylus": "*",
-    "gulp-less": "*",
     "gulp-autoprefixer": "*",
+    "gulp-chmod": "*",
     "gulp-clean": "*",
     "gulp-concat": "*",
+    "gulp-imagemin": "*",
+    "gulp-less": "*",
     "gulp-minify-css": "*",
+    "gulp-nodemon": "^2.0.3",
+    "gulp-react": "*",
     "gulp-rename": "*",
     "gulp-sourcemaps": "*",
+    "gulp-stylus": "*",
     "gulp-uglify": "*",
     "gulp-watch": "*",
-    "gulp-chmod": "*",
-    "gulp-imagemin": "*",
-    "del": "*",
-    "nib": "*"
+    "nib": "*",
+    "object-assign": "^3.0.0"
   }
 }

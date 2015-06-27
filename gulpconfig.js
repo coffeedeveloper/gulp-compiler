@@ -1,6 +1,13 @@
 var config = {
   autoprefix: true,
   chmod: 666,
+  server: {
+    nodemon: {
+      script: 'server.js',
+      ext: 'js html',
+      env: {'NODE_ENV': 'development'}
+    }
+  },
   images: {
     level: 5,
     source: './content/images/*',
