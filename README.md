@@ -1,2 +1,1 @@
-主要用于自动将stylus代码编译生成css
-界面将采用atom-shell来开发
+gulp 配置示例兼模块开发
