@@ -22,6 +22,8 @@ var react        = require('gulp-react');
 var imagemin     = require('gulp-imagemin');
 var del          = require('del');
 
+var webpack      = require('webpack');
+
 
 //var clean        = require('gulp-clean')
 
@@ -139,6 +141,28 @@ gulp.task('images', function () {
 gulp.task('server', function () {
   nodemon(config.server.nodemon);
 });
+
+gulp.task('webpack', function (callback) {
+  webpack({
+    entry: config.server.webpack.entry,
+    output: config.server.webpack.output,
+    module: {
+      loaders: [
+        { test: /\.(js|jsx)$/, loader: 'babel-loader'}
+      ]
+    },
+    resolve: {
+      root: path.resolve('./'),
+      extensions: ['', '.js', '.jsx']
+    },
+    devtool: 'source-map',
+    watch: true
+  }, function(err, stats) {
+    if(err) throw new gutil.PluginError("webpack", err);
+    gutil.log("[webpack]", stats.toString({}));
+  });
+});
+
 
 gulp.task('default', ['clean', 'compile', 'watch']);
 

@@ -21,6 +21,8 @@
     "gulp-uglify": "*",
     "gulp-watch": "*",
     "nib": "*",
-    "object-assign": "^3.0.0"
+    "node-libs-browser": "^0.5.2",
+    "object-assign": "^3.0.0",
+    "webpack": "^1.10.0"
   }
 }

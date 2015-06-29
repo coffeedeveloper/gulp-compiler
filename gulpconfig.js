@@ -6,6 +6,13 @@ var config = {
       script: 'server.js',
       ext: 'js html',
       env: {'NODE_ENV': 'development'}
+    },
+    webpack: {
+      entry: './scripts/entry.js',
+      output: {
+        path: './build',
+        filename: 'client.js'
+      }
     }
   },
   images: {
